@@ -16,7 +16,7 @@ builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(conne
 
 builder.Services.AddCors(options => options.AddPolicy("BlogPolicy",
 builder => {
-    builder.WithOrigins("http://localhost:3000", "http://localhost:3001")
+    builder.WithOrigins("http://localhost:3000", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
     .AllowAnyHeader()
     .AllowAnyMethod();
 }
