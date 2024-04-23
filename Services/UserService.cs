@@ -213,21 +213,21 @@ namespace localinezationBackend.Services
             return result;
         }
 
-        // public UserIdDTO GetUserIdDTOByUsername(string username){
+        public UserIdDTO GetUserIdDTOByUsername(string username){
 
-        //     UserIdDTO UserInfo = new UserIdDTO();
+            UserIdDTO UserInfo = new UserIdDTO();
 
-        //     //query through database to find user
-        //     UserModel foundUser = _context.UserInfo.SingleOrDefault(user => user.Username == username);
+            //query through database to find user
+            UserModel foundUser = _context.UserInfo.SingleOrDefault(user => user.Username == username);
 
-        //     UserInfo.UserId = foundUser.ID;
+            UserInfo.UserId = foundUser.ID;
 
-        //     UserInfo.PublisherName = foundUser.Username;
+            UserInfo.PublisherName = foundUser.Username;
 
-        //     return UserInfo;
+            return UserInfo;
 
 
-        // }
+        }
 
 
 
