@@ -53,6 +53,14 @@ namespace localinezationBackend.Controllers
             return _data.UpdateUsername(id, username);
         }
 
+        [HttpPut]
+        [Route("UpdateCredentials")]
+        public bool UpdateUserCredentials([FromBody] UserCredentialsDto credentials)
+        {
+            return _data.UpdateUserCredentials(credentials.Id, credentials.Username, credentials.Password);
+        }
+
+
 
         // //DeleteUser endpoint
         [HttpDelete]

@@ -191,6 +191,36 @@ namespace localinezationBackend.Services
         //     throw new NotImplementedException();
         // }
 
+        public bool UpdateUserCredentials(int id, string username, string password)
+        {
+            UserModel foundUser = GetUserById(id);
+            bool result = false;
+
+            if (foundUser != null)
+            {
+                // Create a new RNGCryptoServiceProvider to generate a random salt.
+                RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+                byte[] saltBytes = new byte[64];
+                provider.GetNonZeroBytes(saltBytes);
+                string salt = Convert.ToBase64String(saltBytes);
+
+                // Hash the password with the generated salt using Rfc2898DeriveBytes.
+                Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 10000);
+                string hash = Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256));
+
+                // Update the user's username, salt, and hash.
+                foundUser.Username = username;
+                foundUser.Salt = salt;
+                foundUser.Hash = hash;
+
+                // Save the updated user back to the database.
+                _context.Update<UserModel>(foundUser);
+                result = _context.SaveChanges() != 0;
+            }
+
+            return result;
+        }
+
 
         public UserModel GetUserById(int id){
             return _context.UserInfo.SingleOrDefault(user => user.ID == id);

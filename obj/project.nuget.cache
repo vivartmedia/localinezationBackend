@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zxv8nyOzStJXdVG/3BK0EV37HNknB0q92jxTzYqQFe1QMpRgrEePvxfNMcRaFxoOzvA8Jb8w6BxTiG642Rlzww==",
+  "dgSpecHash": "S8quH4HyO56o/hXPJfTdbHyOq0xqTCx9usVOGaLp7R8qEtUZcT4wM6xRF/n6LsMB3U9KFuLG/hfoSyPOHXuOYw==",
   "success": true,
-  "projectFilePath": "G:\\CodeStack\\Level3\\FullStack\\localinezationBackend\\localinezationBackend.csproj",
+  "projectFilePath": "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\localinezationBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nanno\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\nanno\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
