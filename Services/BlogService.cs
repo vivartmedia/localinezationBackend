@@ -43,7 +43,7 @@ namespace localinezationBackend.Services
 
         public IEnumerable<BlogItemModel> GetPublishedItems()
         {
-            return _context.BlogInfo.Where(item => item.IsPublished == false);
+            return _context.BlogInfo.Where(item => item.IsPublished == true);
         }
 
         public List<BlogItemModel> GetAllItemsByTags(string tag)
@@ -66,7 +66,7 @@ namespace localinezationBackend.Services
 
         public bool DeleteBlogItem(BlogItemModel blogToDelete)
         {
-            blogToDelete.IsDeleted = false;
+            blogToDelete.IsDeleted = true;
             _context.Update<BlogItemModel>(blogToDelete);
             return _context.SaveChanges() != 0;
         }

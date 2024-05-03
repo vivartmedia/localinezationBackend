@@ -1,3 +1,4 @@
+using Backend_localinezationBackend.Services;
 using localinezationBackend.Services;
 using localinezationBackend.Services.Context;
 using Microsoft.EntityFrameworkCore;
@@ -9,23 +10,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<BlogService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<PasswordService>();
+builder.Services.AddScoped<MediaService>();  // Register MediaService
 
 var connectionString = builder.Configuration.GetConnectionString("MyBlogString");
 
-builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<DataContext>(Options =>
+    Options.UseSqlServer(connectionString));
 
 builder.Services.AddCors(options => options.AddPolicy("BlogPolicy",
-builder => {
-    builder.WithOrigins("http://localhost:3000", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
+builder =>
+{
+    builder.WithOrigins("http://localhost:3002", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
     .AllowAnyHeader()
     .AllowAnyMethod();
 }
 ));
 
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -37,7 +38,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
 app.UseCors("BlogPolicy");
 
 app.UseAuthorization();

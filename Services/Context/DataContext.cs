@@ -11,6 +11,12 @@ namespace localinezationBackend.Services.Context
     {
         public DbSet<UserModel> UserInfo { get;set; }
         public DbSet<BlogItemModel> BlogInfo { get;set; }
+
+        public DbSet<Media> Medias { get;set; }
+        public DbSet<TranslationRequest> TranslationRequests { get;set; }
+        public DbSet<Translation> Translations{ get;set; }
+        
+
         public DataContext(DbContextOptions options): base(options){}
         
 

@@ -52,7 +52,7 @@ namespace localinezationBackend.Controllers
         }
 
         [HttpGet]
-        [Route("Get AllItemsByTags/{tag}")]
+        [Route("GetAllItemsByTags/{tag}")]
         public List<BlogItemModel> GetAllItemsByTags(string tag){
             return _data.GetAllItemsByTags(tag);
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\localinezationBackend.csproj": {}
+    "G:\\CodeStack\\Level3\\FullStack\\Backend-localinezationBackend\\localinezationBackend.csproj": {}
   },
   "projects": {
-    "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\localinezationBackend.csproj": {
+    "G:\\CodeStack\\Level3\\FullStack\\Backend-localinezationBackend\\localinezationBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\localinezationBackend.csproj",
+        "projectUniqueName": "G:\\CodeStack\\Level3\\FullStack\\Backend-localinezationBackend\\localinezationBackend.csproj",
         "projectName": "localinezationBackend",
-        "projectPath": "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\localinezationBackend.csproj",
+        "projectPath": "G:\\CodeStack\\Level3\\FullStack\\Backend-localinezationBackend\\localinezationBackend.csproj",
         "packagesPath": "C:\\Users\\nanno\\.nuget\\packages\\",
-        "outputPath": "G:\\CodeStack\\Level3\\FullStack\\Backend-Github-localinezationBackend downloaded working github version\\localinezationBackend\\obj\\",
+        "outputPath": "G:\\CodeStack\\Level3\\FullStack\\Backend-localinezationBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nanno\\AppData\\Roaming\\NuGet\\NuGet.Config"
