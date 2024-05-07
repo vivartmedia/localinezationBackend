@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,8 +14,6 @@ namespace localinezationBackend.Services
         public BlogService(DataContext context){
             _context = context;
         }
-
-
 
         public bool AddBlogItem(BlogItemModel newBlogItem)
         {

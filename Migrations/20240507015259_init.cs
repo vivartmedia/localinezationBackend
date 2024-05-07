@@ -33,6 +33,29 @@ namespace localinezationBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MediaInfo",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CoverArt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OriginalLanguage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tags = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Categories = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Platform = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TranslationRequests = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MediaInfo", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserInfo",
                 columns: table => new
                 {
@@ -53,6 +76,9 @@ namespace localinezationBackend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BlogInfo");
+
+            migrationBuilder.DropTable(
+                name: "MediaInfo");
 
             migrationBuilder.DropTable(
                 name: "UserInfo");

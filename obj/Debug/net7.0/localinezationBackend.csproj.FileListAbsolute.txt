@@ -99,25 +99,19 @@ G:\CodeStack\Level3\FullStack\Backend-Github-localinezationBackend downloaded wo
 G:\CodeStack\Level3\FullStack\Backend-Github-localinezationBackend downloaded working github version\localinezationBackend\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\localinezationBackend.exe
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\localinezationBackend.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Azure.Core.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.Identity.Client.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.OpenApi.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
-G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\System.Memory.Data.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\System.Security.Permissions.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\localinezationBackend.pdb
+G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll

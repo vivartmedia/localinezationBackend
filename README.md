@@ -1,3 +1,20 @@
+ Commands:
+ //may have to install this one
+dotnet tool install --global dotnet-ef 
+
+dotnet add package Microsoft.EntityFrameworkCore -v 7.0.5
+
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.3
+
+dotnet add package Microsoft.EntityFrameworkCore.Tools -v 7.0.3
+
+dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.3
+
+dotnet ef migrations add init
+dotnet ef database update
+
+<!-- ------------------------------------------------------------------------ -->
+
 {
   "username": "AshurN",
   "password": "password123"

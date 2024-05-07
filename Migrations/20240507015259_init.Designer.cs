@@ -12,7 +12,7 @@ using localinezationBackend.Services.Context;
 namespace localinezationBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240404041912_init")]
+    [Migration("20240507015259_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -66,6 +66,52 @@ namespace localinezationBackend.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("BlogInfo");
+                });
+
+            modelBuilder.Entity("localinezationBackend.Models.MediaItemModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Categories")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverArt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPublished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OriginalLanguage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Platform")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TranslationRequests")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MediaInfo");
                 });
 
             modelBuilder.Entity("localinezationBackend.Models.UserModel", b =>

@@ -12,15 +12,17 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<MediaService>();  // Register MediaService
 
+//connection string, to connect to db
 var connectionString = builder.Configuration.GetConnectionString("MyBlogString");
 
+//configure entity framework core to use sql server as the database provider for a datacontext DbContextt in our project
 builder.Services.AddDbContext<DataContext>(Options =>
     Options.UseSqlServer(connectionString));
 
 builder.Services.AddCors(options => options.AddPolicy("BlogPolicy",
 builder =>
 {
-    builder.WithOrigins("http://localhost:3002", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
+    builder.WithOrigins("http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
     .AllowAnyHeader()
     .AllowAnyMethod();
 }
