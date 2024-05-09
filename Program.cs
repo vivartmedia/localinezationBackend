@@ -19,14 +19,17 @@ var connectionString = builder.Configuration.GetConnectionString("MyBlogString")
 builder.Services.AddDbContext<DataContext>(Options =>
     Options.UseSqlServer(connectionString));
 
-builder.Services.AddCors(options => options.AddPolicy("BlogPolicy",
-builder =>
+builder.Services.AddCors(options => options.AddPolicy("BlogPolicy", builder =>
 {
-    builder.WithOrigins("http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "https://localinezation.vercel.app", "https://localinezation-front.vercel.app")
+    builder.WithOrigins("http://localhost:3000", // Frontend server
+                        "http://localhost:3001", // Other possible frontend server
+                        "http://localhost:3002", 
+                        "https://localinezation-front-one.vercel.app",
+                        "https://localinezation.vercel.app", 
+                        "https://localinezation-front.vercel.app")
     .AllowAnyHeader()
     .AllowAnyMethod();
-}
-));
+}));
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
