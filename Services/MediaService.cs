@@ -61,7 +61,7 @@ namespace Backend_localinezationBackend.Services
 
 
         //adds new Translation text
-        public bool AddTranslation(TranslationRequestModel translation)
+        public bool AddTranslation(TranslationModel translation)
         {
             _context.Add(translation);
             return _context.SaveChanges() != 0;

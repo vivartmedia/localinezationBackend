@@ -122,3 +122,11 @@ G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\Sys
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 G:\CodeStack\Level3\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.pdb
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.csproj.AssemblyReference.cache
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.GeneratedMSBuildEditorConfig.editorconfig
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.AssemblyInfoInputs.cache
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.AssemblyInfo.cs
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.csproj.CoreCompileInputs.cache
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.MvcApplicationPartsAssemblyInfo.cs
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.MvcApplicationPartsAssemblyInfo.cache
+G:\CodeStack\FullStack\Backend-localinezationBackend\obj\Debug\net7.0\localinezationBackend.pdb
