@@ -19,11 +19,13 @@ namespace localinezationBackend.Services
     {
         private readonly DataContext _context;
 
-        public UserService(DataContext context){
+        public UserService(DataContext context)
+        {
             _context = context;
         }
 
-        public bool DoesUserExist(string Username){
+        public bool DoesUserExist(string Username)
+        {
             //check if username exist 
             //is 1 item matches then return the item
             //if no item matches, then return null
@@ -33,29 +35,28 @@ namespace localinezationBackend.Services
 
         public bool AddUser(CreateAccountDTO UserToAdd)
         {
-            //if user already exists
-            //if does not exist create new account
-            //else return false
-
             bool result = false;
 
-            //if user doesn't exist, add user based on model
-            if(!DoesUserExist(UserToAdd.Username)){
-                UserModel newUser = new UserModel();
+            // Check if user doesn't exist, then add user based on model
+            if (!DoesUserExist(UserToAdd.Username))
+            {
+                UserModel newUser = new UserModel
+                {
+                    ID = UserToAdd.ID,
+                    Username = UserToAdd.Username,
+                    Email = UserToAdd.Email, // Set email here as request by zach
+                                             // Salt and Hash are set after hashing the password
+                };
 
                 var hashPassword = HashPassword(UserToAdd.Password);
-
-                newUser.ID = UserToAdd.ID;
-                newUser.Username = UserToAdd.Username;
                 newUser.Salt = hashPassword.Salt;
                 newUser.Hash = hashPassword.Hash;
 
-                //add newUser to the database
+                // Add new user to the database
                 _context.Add(newUser);
 
-                //save into database, return of number of entries written into database
+                // Save into database, number of entries written into database indicates success
                 result = _context.SaveChanges() != 0;
-                
             }
 
             return result;
@@ -63,7 +64,8 @@ namespace localinezationBackend.Services
 
         //Salt and Hash; HashedPassword = H( Salt + Password)
 
-        public PasswordDTO HashPassword(string password){
+        public PasswordDTO HashPassword(string password)
+        {
 
             PasswordDTO newHashPassword = new PasswordDTO();
 
@@ -95,7 +97,8 @@ namespace localinezationBackend.Services
         }
 
         //verify users password
-        public bool VerifyUsersPassword(string? password, string? storedHash, string? storedSalt){
+        public bool VerifyUsersPassword(string? password, string? storedHash, string? storedSalt)
+        {
 
             //encode salt back in the original byte array
             byte[] SaltBytes = Convert.FromBase64String(storedSalt);
@@ -109,18 +112,21 @@ namespace localinezationBackend.Services
             return newHash == storedHash;
         }
 
-        public IActionResult Login(LoginDTO User){
+        public IActionResult Login(LoginDTO User)
+        {
             IActionResult Result = Unauthorized();
 
             //check if user exists
-            if(DoesUserExist(User.Username)){
+            if (DoesUserExist(User.Username))
+            {
                 //IF TRUE, continue with authentication
                 //if tru, store our user object
 
                 UserModel founderUser = GetUserByUsername(User.Username);
 
                 //check if password is correct
-                if(VerifyUsersPassword(User.Password, founderUser.Hash, founderUser.Salt)){
+                if (VerifyUsersPassword(User.Password, founderUser.Hash, founderUser.Salt))
+                {
 
                     // anyone with this code can access the login
                     var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
@@ -147,16 +153,17 @@ namespace localinezationBackend.Services
                 }
 
                 //Token: 
-                    // asdasdlejjwfoeiwj. = header
-                    // oisodcijosdijcodsj. Payload: contains claims such as expiration time
-                    // ;slakf/sdlofk/slfk;. = signature encrpts and comine header and payload using secret key
+                // asdasdlejjwfoeiwj. = header
+                // oisodcijosdijcodsj. Payload: contains claims such as expiration time
+                // ;slakf/sdlofk/slfk;. = signature encrpts and comine header and payload using secret key
 
             }
 
             return Result;
         }
 
-        public UserModel GetUserByUsername(string username){
+        public UserModel GetUserByUsername(string username)
+        {
             return _context.UserInfo.SingleOrDefault(User => User.Username == username);
         }
 
@@ -175,7 +182,8 @@ namespace localinezationBackend.Services
 
             bool result = false;
 
-            if(foundUser != null){
+            if (foundUser != null)
+            {
                 // a user was found
                 // update founduser object
                 foundUser.Username = username;
@@ -222,7 +230,8 @@ namespace localinezationBackend.Services
         }
 
 
-        public UserModel GetUserById(int id){
+        public UserModel GetUserById(int id)
+        {
             return _context.UserInfo.SingleOrDefault(user => user.ID == id);
         }
 
@@ -234,16 +243,18 @@ namespace localinezationBackend.Services
 
             bool result = false;
 
-                if(foundUser != null){
+            if (foundUser != null)
+            {
                 //user was found
                 _context.Remove<UserModel>(foundUser);
                 result = _context.SaveChanges() != 0;
-                }
+            }
 
             return result;
         }
 
-        public UserIdDTO GetUserIdDTOByUsername(string username){
+        public UserIdDTO GetUserIdDTOByUsername(string username)
+        {
 
             UserIdDTO UserInfo = new UserIdDTO();
 
