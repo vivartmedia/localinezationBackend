@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<BlogService>();
+// builder.Services.AddScoped<BlogService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<MediaService>();  // Register MediaService
