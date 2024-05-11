@@ -3,6 +3,7 @@ using Backend_localinezationBackend.Services;
 using localinezationBackend.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Backend_localinezationBackend.Controllers
 {
     [ApiController]
@@ -72,6 +73,46 @@ namespace Backend_localinezationBackend.Controllers
         public bool DeleteMediaItem(MediaItemModel mediaToDelete){
             return _data.DeleteMediaItem(mediaToDelete);
         }
+
+
+
+
+        // POST endpoint to add a translation request to a media item
+        [HttpPost]
+        [Route("AddTranslationRequest")]
+        public ActionResult AddTranslationRequest(TranslationRequestModel translationRequest)
+        {
+            if (_data.AddTranslationRequest(translationRequest))
+                return Ok("Translation request added successfully.");
+            return BadRequest("Failed to add translation request.");
+        }
+
+        // POST endpoint to add a translation
+        [HttpPost]
+        [Route("AddTranslation")]
+        public ActionResult AddTranslation(TranslationModel translation)
+        {
+            if (_data.AddTranslation(translation))
+                return Ok("Translation added successfully.");
+            return BadRequest("Failed to add translation.");
+        }
+
+        // GET endpoint to fetch all media and translations for a given user
+        [HttpGet]
+        [Route("GetUserMediaWithTranslations/{userId}")]
+        public ActionResult<IEnumerable<MediaItemModel>> GetUserMediaWithTranslations(int userId)
+        {
+            return Ok(_data.GetUserMediaWithTranslations(userId));
+        }
+
+        // GET endpoint to fetch all translated media by a specific user
+        [HttpGet]
+        [Route("GetTranslatedMediaByUser/{translatorUserId}")]
+        public ActionResult<IEnumerable<MediaItemModel>> GetTranslatedMediaByUser(string translatorUserId)
+        {
+            return Ok(_data.GetTranslatedMediaByUser(translatorUserId));
+        }
+
 
     }
 }
