@@ -56,7 +56,9 @@ namespace localinezationBackend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RequestorUserId = table.Column<int>(type: "int", nullable: false),
                     MediaId = table.Column<int>(type: "int", nullable: false),
-                    RequestLanguage = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RequestLanguage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RequestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RequestDialogue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,6 +72,27 @@ namespace localinezationBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RequestReference",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Src = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsVideo = table.Column<bool>(type: "bit", nullable: false),
+                    TranslationRequestId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestReference", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RequestReference_TranslationRequests_TranslationRequestId",
+                        column: x => x.TranslationRequestId,
+                        principalTable: "TranslationRequests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Translations",
                 columns: table => new
                 {
@@ -78,7 +101,9 @@ namespace localinezationBackend.Migrations
                     TranslationRequestId = table.Column<int>(type: "int", nullable: false),
                     TranslatorUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TranslatedText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsApproved = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsApproved = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsGuest = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,6 +115,11 @@ namespace localinezationBackend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RequestReference_TranslationRequestId",
+                table: "RequestReference",
+                column: "TranslationRequestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TranslationRequests_MediaId",
@@ -105,6 +135,9 @@ namespace localinezationBackend.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "RequestReference");
+
             migrationBuilder.DropTable(
                 name: "Translations");
 

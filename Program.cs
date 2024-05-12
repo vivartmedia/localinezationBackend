@@ -6,6 +6,9 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+
 // Add services to the container.
 // builder.Services.AddScoped<BlogService>();
 builder.Services.AddScoped<UserService>();
@@ -33,6 +36,8 @@ builder.Services.AddCors(options => options.AddPolicy("BlogPolicy", builder =>
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 

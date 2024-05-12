@@ -12,6 +12,8 @@ dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.3
 
 
 dotnet ef database drop
+
+
 dotnet ef migrations add init
 dotnet ef database update
 

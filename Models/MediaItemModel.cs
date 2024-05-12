@@ -22,6 +22,19 @@ namespace localinezationBackend.Models
 
     }
 
+
+    public class RequestReference
+{
+    public int Id { get; set; }
+    public string? Src { get; set; }
+    public bool IsVideo { get; set; }
+    public int TranslationRequestId { get; set; }
+    public TranslationRequestModel? TranslationRequest { get; set; }
+}
+
+
+
+
     public class TranslationRequestModel
     {
         public int Id { get; set; }// (Primary key) generated automagically to the translation request
@@ -31,6 +44,11 @@ namespace localinezationBackend.Models
         public string? RequestLanguage { get; set; }//UserId of the user who requested the translation
         public virtual ICollection<TranslationModel>? Translations { get; set; }// colllection of translations fulfilled under this request
 
+        public string? RequestName { get; set; }//in slack from zach//requestName is the name of the piece of the media to be translated (I.E. "Main Menu Text" for a video game);
+        public string? RequestDialogue { get; set; }//in slack from zach//requestDialogue is the text from that piece (I.E. "Start | Settings | Quit"). This should be optional in case the user only has an   image/video available.
+        public virtual ICollection<RequestReference>? RequestReferences { get; set; }//in slack from zach //requestReferences is what is being used to show the piece to be translated. (See RequestReference)
+        
+
     }
 
     public class TranslationModel
@@ -38,8 +56,10 @@ namespace localinezationBackend.Models
     public int Id { get; set; } // Primary key for the translation
     public int TranslationRequestId { get; set; } // Foreign key to TranslationRequest
     public TranslationRequestModel? TranslationRequest { get; set; } // Navigation property to TranslationRequest
-    public string? TranslatorUserId { get; set; } // UserId of the translator, set it up in frontend
-    public string? TranslatedText { get; set; }
-    public string? IsApproved { get; set; } // For approval if needed/optional
+    public int TranslatorUserId { get; set; } // UserId of the translator, set it up in frontend
+    public string? TranslatedText { get; set; }//translatedDialogue or TranslatedText 
+    public bool IsApproved { get; set; } // For approval if needed/optional
+    public string? Language { get; set; }
+    public bool IsGuest { get; set; } 
 }
 }

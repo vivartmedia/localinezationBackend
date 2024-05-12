@@ -1,8 +1,6 @@
-
 using Backend_localinezationBackend.Services;
 using localinezationBackend.Models;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace Backend_localinezationBackend.Controllers
 {
@@ -10,7 +8,6 @@ namespace Backend_localinezationBackend.Controllers
     [Route("[controller]")]
     public class MediaController : ControllerBase
     {
-        // private readonly ILogger<MediaController> _logger;
         private readonly MediaService _data;
 
         public MediaController(MediaService data)
@@ -20,64 +17,76 @@ namespace Backend_localinezationBackend.Controllers
 
         [HttpPost]
         [Route("AddMediaItem")]
-            public bool AddMediaItem(MediaItemModel newMediaItem){
-            return _data.AddMediaItem(newMediaItem);
+        public ActionResult AddMediaItem(MediaItemModel newMediaItem)
+        {
+            if (_data.AddMediaItem(newMediaItem))
+                return Ok("Media item added successfully.");
+            return BadRequest("Failed to add media item.");
         }
-
 
         [HttpGet]
         [Route("GetAllMediaItems")]
-        public IEnumerable<MediaItemModel> GetAllMediaItems(){
-            return _data.GetAllMediaItems();
+        public ActionResult<IEnumerable<MediaItemModel>> GetAllMediaItems()
+        {
+            return Ok(_data.GetAllMediaItems());
         }
 
         [HttpGet]
         [Route("GetItemsByUserId/{userId}")]
-        public IEnumerable<MediaItemModel> GetItemsByUserId(int userId){
-            return _data.GetItemsByUserId(userId);
+        public ActionResult<IEnumerable<MediaItemModel>> GetItemsByUserId(int userId)
+        {
+            return Ok(_data.GetItemsByUserId(userId));
         }
 
         [HttpGet]
         [Route("GetItemsByOriginalLanguage/{originallanguage}")]
-        public IEnumerable<MediaItemModel> GetItemsByOriginalLanguage(string originallanguage)
+        public ActionResult<IEnumerable<MediaItemModel>> GetItemsByOriginalLanguage(string originallanguage)
         {
-            return _data.GetItemsByOriginalLanguage(originallanguage);
+            return Ok(_data.GetItemsByOriginalLanguage(originallanguage));
         }
 
         [HttpGet]
         [Route("GetPublishedItems")]
-        public IEnumerable<MediaItemModel> GetPublishedItems(){
-            return _data.GetPublishedItems();
+        public ActionResult<IEnumerable<MediaItemModel>> GetPublishedItems()
+        {
+            return Ok(_data.GetPublishedItems());
         }
 
         [HttpGet]
         [Route("GetAllItemsByTags/{tag}")]
-        public List<MediaItemModel> GetAllItemsByTags(string tag){
-            return _data.GetAllItemsByTags(tag);
+        public ActionResult<List<MediaItemModel>> GetAllItemsByTags(string tag)
+        {
+            return Ok(_data.GetAllItemsByTags(tag));
         }
 
         [HttpGet]
         [Route("GetMediaItemById/{id}")]
-        public MediaItemModel GetMediaItemById(int id){
-            return _data.GetMediaItemById(id);
+        public ActionResult<MediaItemModel> GetMediaItemById(int id)
+        {
+            var mediaItem = _data.GetMediaItemById(id);
+            if (mediaItem != null)
+                return Ok(mediaItem);
+            return NotFound("Media item not found.");
         }
 
         [HttpPut]
         [Route("UpdateMediaItem")]
-        public bool UpdateMediaItem(MediaItemModel mediaUpdate){
-            return _data.UpdateMediaItem(mediaUpdate);
+        public ActionResult UpdateMediaItem(MediaItemModel mediaUpdate)
+        {
+            if (_data.UpdateMediaItem(mediaUpdate))
+                return Ok("Media item updated successfully.");
+            return BadRequest("Failed to update media item.");
         }
 
         [HttpDelete]
         [Route("DeleteMediaItem")]
-        public bool DeleteMediaItem(MediaItemModel mediaToDelete){
-            return _data.DeleteMediaItem(mediaToDelete);
+        public ActionResult DeleteMediaItem(int mediaId)
+        {
+            if (_data.DeleteMediaItem(mediaId))
+                return Ok("Media item deleted successfully.");
+            return BadRequest("Failed to delete media item.");
         }
 
-
-
-
-        // POST endpoint to add a translation request to a media item
         [HttpPost]
         [Route("AddTranslationRequest")]
         public ActionResult AddTranslationRequest(TranslationRequestModel translationRequest)
@@ -87,17 +96,15 @@ namespace Backend_localinezationBackend.Controllers
             return BadRequest("Failed to add translation request.");
         }
 
-        // POST endpoint to add a translation
         [HttpPost]
         [Route("AddTranslation")]
-        public ActionResult AddTranslation(TranslationModel translation)
+        public IActionResult AddTranslation([FromBody] TranslationModel translation)
         {
             if (_data.AddTranslation(translation))
                 return Ok("Translation added successfully.");
             return BadRequest("Failed to add translation.");
         }
 
-        // GET endpoint to fetch all media and translations for a given user
         [HttpGet]
         [Route("GetUserMediaWithTranslations/{userId}")]
         public ActionResult<IEnumerable<MediaItemModel>> GetUserMediaWithTranslations(int userId)
@@ -105,14 +112,12 @@ namespace Backend_localinezationBackend.Controllers
             return Ok(_data.GetUserMediaWithTranslations(userId));
         }
 
-        // GET endpoint to fetch all translated media by a specific user
         [HttpGet]
         [Route("GetTranslatedMediaByUser/{translatorUserId}")]
-        public ActionResult<IEnumerable<MediaItemModel>> GetTranslatedMediaByUser(string translatorUserId)
+        public ActionResult<IEnumerable<MediaItemModel>> GetTranslatedMediaByUser(int translatorUserId)
         {
             return Ok(_data.GetTranslatedMediaByUser(translatorUserId));
         }
-
 
     }
 }

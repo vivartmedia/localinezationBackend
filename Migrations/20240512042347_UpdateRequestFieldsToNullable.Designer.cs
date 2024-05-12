@@ -12,8 +12,8 @@ using localinezationBackend.Services.Context;
 namespace localinezationBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240511183650_init")]
-    partial class init
+    [Migration("20240512042347_UpdateRequestFieldsToNullable")]
+    partial class UpdateRequestFieldsToNullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,30 @@ namespace localinezationBackend.Migrations
                     b.ToTable("MediaInfo");
                 });
 
+            modelBuilder.Entity("localinezationBackend.Models.RequestReference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsVideo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Src")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TranslationRequestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TranslationRequestId");
+
+                    b.ToTable("RequestReference");
+                });
+
             modelBuilder.Entity("localinezationBackend.Models.TranslationModel", b =>
                 {
                     b.Property<int>("Id")
@@ -77,6 +101,12 @@ namespace localinezationBackend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("IsApproved")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsGuest")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Language")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TranslatedText")
@@ -106,7 +136,13 @@ namespace localinezationBackend.Migrations
                     b.Property<int>("MediaId")
                         .HasColumnType("int");
 
+                    b.Property<string>("RequestDialogue")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RequestLanguage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RequestorUserId")
@@ -144,6 +180,17 @@ namespace localinezationBackend.Migrations
                     b.ToTable("UserInfo");
                 });
 
+            modelBuilder.Entity("localinezationBackend.Models.RequestReference", b =>
+                {
+                    b.HasOne("localinezationBackend.Models.TranslationRequestModel", "TranslationRequest")
+                        .WithMany("RequestReferences")
+                        .HasForeignKey("TranslationRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TranslationRequest");
+                });
+
             modelBuilder.Entity("localinezationBackend.Models.TranslationModel", b =>
                 {
                     b.HasOne("localinezationBackend.Models.TranslationRequestModel", "TranslationRequest")
@@ -173,6 +220,8 @@ namespace localinezationBackend.Migrations
 
             modelBuilder.Entity("localinezationBackend.Models.TranslationRequestModel", b =>
                 {
+                    b.Navigation("RequestReferences");
+
                     b.Navigation("Translations");
                 });
 #pragma warning restore 612, 618
