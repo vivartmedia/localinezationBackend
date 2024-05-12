@@ -119,5 +119,34 @@ namespace Backend_localinezationBackend.Controllers
             return Ok(_data.GetTranslatedMediaByUser(translatorUserId));
         }
 
+
+        [HttpGet]
+        [Route("GetTranslationRequestsByUserId/{userId}")]
+        public ActionResult<IEnumerable<TranslationRequestModel>> GetTranslationRequestsByUserId(int userId)
+        {
+            return Ok(_data.GetTranslationRequestsByUserId(userId));
+        }
+
+        [HttpGet]
+        [Route("GetTranslationRequestsByMediaId/{mediaId}")]
+        public ActionResult<IEnumerable<TranslationRequestModel>> GetTranslationRequestsByMediaId(int mediaId)
+        {
+            return Ok(_data.GetTranslationRequestsByMediaId(mediaId));
+        }
+
+        [HttpGet]
+        [Route("GetTranslationsByRequestId/{requestId}")]
+        public ActionResult<IEnumerable<TranslationModel>> GetTranslationsByRequestId(int requestId)
+        {
+            return Ok(_data.GetTranslationsByRequestId(requestId));
+        }
+
+        [HttpGet]
+        [Route("GetTranslationsByTranslatorUserId/{translatorUserId}")]
+        public ActionResult<IEnumerable<TranslationModel>> GetTranslationsByTranslatorUserId(int translatorUserId)
+        {
+            return Ok(_data.GetTranslationsByTranslatorUserId(translatorUserId));
+        }
+
     }
 }

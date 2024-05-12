@@ -127,6 +127,44 @@ namespace Backend_localinezationBackend.Services
                            .ToList();
         }
 
+
+        public IEnumerable<TranslationRequestModel> GetTranslationRequestsByUserId(int userId)
+        {
+            return _context.TranslationRequests
+                           .Include(tr => tr.Media)
+                           .Where(tr => tr.RequestorUserId == userId)
+                           .ToList();
+        }
+
+        public IEnumerable<TranslationRequestModel> GetTranslationRequestsByMediaId(int mediaId)
+        {
+            return _context.TranslationRequests
+                           .Include(tr => tr.Media)
+                           .Where(tr => tr.MediaId == mediaId)
+                           .ToList();
+        }
+
+        public IEnumerable<TranslationModel> GetTranslationsByRequestId(int requestId)
+        {
+            return _context.Translations
+                           .Where(t => t.TranslationRequestId == requestId)
+                           .ToList();
+        }
+
+        public IEnumerable<TranslationModel> GetTranslationsByTranslatorUserId(int translatorUserId)
+        {
+            // This approach uses the null-forgiving operator to suppress nullable warnings after thorough checks.
+            return _context.Translations
+                           .Include(t => t.TranslationRequest!)
+                               .ThenInclude(tr => tr.Media!)
+                           .Where(t => t.TranslatorUserId == translatorUserId &&
+                                       t.TranslationRequest != null &&
+                                       t.TranslationRequest.Media != null)
+                           .Select(t => t) // Assuming you are returning the TranslationModel directly
+                           .ToList();
+        }
+
+
     }
 
 }
