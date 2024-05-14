@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using localinezationBackend.Models;
+using localinezationBackend.Models.DTO;
 using localinezationBackend.Services.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ namespace Backend_localinezationBackend.Services
             _context = context;
             _logger = logger;
         }
+
 
         public bool AddMediaItem(MediaItemModel newMediaItem)
         {
@@ -136,13 +138,7 @@ namespace Backend_localinezationBackend.Services
                            .ToList();
         }
 
-        public IEnumerable<TranslationRequestModel> GetTranslationRequestsByMediaId(int mediaId)
-        {
-            return _context.TranslationRequests
-                           .Include(tr => tr.Media)
-                           .Where(tr => tr.MediaId == mediaId)
-                           .ToList();
-        }
+
 
         public IEnumerable<TranslationModel> GetTranslationsByRequestId(int requestId)
         {
@@ -163,6 +159,30 @@ namespace Backend_localinezationBackend.Services
                            .Select(t => t) // Assuming you are returning the TranslationModel directly
                            .ToList();
         }
+
+
+
+
+        //     public IEnumerable<TranslationRequestModel> GetTranslationRequestsByMediaId(int mediaId)
+        // {
+        //     return _context.TranslationRequests
+        //                    .Include(tr => tr.Media)
+        //                    .Where(tr => tr.MediaId == mediaId)
+        //                    .ToList();
+        // }
+
+        public IEnumerable<TranslationRequestDTO> GetTranslationRequestsByMediaId(int mediaId)
+        {
+            var requests = _context.TranslationRequests
+                .Include(tr => tr.Media)
+                .Include(tr => tr.RequestReferences)  // Make sure to include RequestReferences
+                .Where(tr => tr.MediaId == mediaId)
+                .ToList()
+                .Select(tr => MappingService.MapToDTO(tr)); // Use the MappingService to convert models to DTOs
+            return requests;
+        }
+
+
 
 
     }

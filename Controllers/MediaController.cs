@@ -1,5 +1,7 @@
+
 using Backend_localinezationBackend.Services;
 using localinezationBackend.Models;
+using localinezationBackend.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend_localinezationBackend.Controllers
@@ -129,9 +131,18 @@ namespace Backend_localinezationBackend.Controllers
 
         [HttpGet]
         [Route("GetTranslationRequestsByMediaId/{mediaId}")]
-        public ActionResult<IEnumerable<TranslationRequestModel>> GetTranslationRequestsByMediaId(int mediaId)
+        public ActionResult<IEnumerable<TranslationRequestDTO>> GetTranslationRequestsByMediaId(int mediaId)
         {
-            return Ok(_data.GetTranslationRequestsByMediaId(mediaId));
+            try{
+                    var translationRequest = _data.GetTranslationRequestsByMediaId(mediaId);
+                                    
+                    return Ok(translationRequest);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+                    
         }
 
         [HttpGet]
@@ -147,6 +158,9 @@ namespace Backend_localinezationBackend.Controllers
         {
             return Ok(_data.GetTranslationsByTranslatorUserId(translatorUserId));
         }
+
+      
+
 
     }
 }
