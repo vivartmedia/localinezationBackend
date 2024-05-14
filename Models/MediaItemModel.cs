@@ -9,8 +9,8 @@ namespace localinezationBackend.Models
         public string? Title { get; set; }
         public string? CoverArt { get; set; }//string or url or path the an image
         public string? OriginalLanguage { get; set; }
-        public string? Tags { get; set; }
-        public string? Categories { get; set; }
+        // public string? Tags { get; set; }
+        // public string? Categories { get; set; }
         public string? Type { get; set; }//e.g., video, book ...
         public string? Platform { get; set; }// e.g. youtube instagram.... 
         public bool? IsPublished { get; set; }

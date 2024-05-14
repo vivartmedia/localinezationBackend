@@ -11,7 +11,7 @@ namespace localinezationBackend.Models.DTO
         public string Username {get; set; }
 
         
-        public string Email { get; set; }//requsted by zach
+        // public string Email { get; set; }//requsted by zach
         public string Password {get; set; }
 
     }

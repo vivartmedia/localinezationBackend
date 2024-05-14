@@ -44,12 +44,12 @@ namespace Backend_localinezationBackend.Services
             return _context.MediaInfo.Where(item => item.IsPublished == true);
         }
 
-        public List<MediaItemModel> GetAllItemsByTags(string tag)
-        {
-            return _context.MediaInfo
-                           .Where(item => item.Tags != null && item.Tags.Contains(tag))
-                           .ToList();
-        }
+        // public List<MediaItemModel> GetAllItemsByTags(string tag)
+        // {
+        //     return _context.MediaInfo
+        //                    .Where(item => item.Tags != null && item.Tags.Contains(tag))
+        //                    .ToList();
+        // }
 
         public MediaItemModel? GetMediaItemById(int id)
         {

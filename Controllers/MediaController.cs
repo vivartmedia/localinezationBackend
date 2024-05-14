@@ -52,12 +52,12 @@ namespace Backend_localinezationBackend.Controllers
             return Ok(_data.GetPublishedItems());
         }
 
-        [HttpGet]
-        [Route("GetAllItemsByTags/{tag}")]
-        public ActionResult<List<MediaItemModel>> GetAllItemsByTags(string tag)
-        {
-            return Ok(_data.GetAllItemsByTags(tag));
-        }
+        // [HttpGet]
+        // [Route("GetAllItemsByTags/{tag}")]
+        // public ActionResult<List<MediaItemModel>> GetAllItemsByTags(string tag)
+        // {
+        //     return Ok(_data.GetAllItemsByTags(tag));
+        // }
 
         [HttpGet]
         [Route("GetMediaItemById/{id}")]

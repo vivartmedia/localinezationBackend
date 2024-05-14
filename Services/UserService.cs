@@ -44,7 +44,7 @@ namespace localinezationBackend.Services
                 {
                     ID = UserToAdd.ID,
                     Username = UserToAdd.Username,
-                    Email = UserToAdd.Email, // Set email here as request by zach
+                    // Email = UserToAdd.Email, // Set email here as request by zach
                                              // Salt and Hash are set after hashing the password
                 };
 
