@@ -99,9 +99,9 @@ namespace localinezationBackend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TranslationRequestId = table.Column<int>(type: "int", nullable: false),
-                    TranslatorUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TranslatorUserId = table.Column<int>(type: "nvarchar(max)", nullable: true),
                     TranslatedText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsApproved = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsApproved = table.Column<int>(type: "nvarchar(max)", nullable: true),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsGuest = table.Column<bool>(type: "bit", nullable: false)
                 },

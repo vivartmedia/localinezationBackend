@@ -97,7 +97,7 @@ namespace localinezationBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("IsApproved")
+                    b.Property<bool>("IsApproved")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsGuest")
@@ -112,7 +112,7 @@ namespace localinezationBackend.Migrations
                     b.Property<int>("TranslationRequestId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TranslatorUserId")
+                    b.Property<int>("TranslatorUserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
