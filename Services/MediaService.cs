@@ -213,6 +213,27 @@ namespace Backend_localinezationBackend.Services
             _logger.LogInformation("Fetched {Count} translations", translationDtos.Count);
             return translationDtos;
         }
+        public IEnumerable<TranslationDTO> GetTranslationsByMediaId(int mediaId)
+        {
+            var translations = _context.Translations
+                .Include(t => t.TranslationRequest)
+                    .ThenInclude(tr => tr.Media)
+                .Where(t => t.TranslationRequest.MediaId == mediaId)
+                .ToList()
+                .Select(t => new TranslationDTO
+                {
+                    Id = t.Id,
+                    TranslationRequestId = t.TranslationRequestId,
+                    TranslatorUserId = t.TranslatorUserId,
+                    TranslatedText = t.TranslatedText,
+                    IsApproved = t.IsApproved,
+                    Language = t.Language,
+                    IsGuest = t.IsGuest
+                }).ToList();
+
+            return translations;
+        }
+
 
 
 
@@ -260,15 +281,15 @@ namespace Backend_localinezationBackend.Services
             return requests;
         }
         public IEnumerable<TranslationRequestDTO> GetTranslationRequestsByUserId(int userId)
-{
-    var requests = _context.TranslationRequests
-        .Include(tr => tr.Media)
-        .Include(tr => tr.RequestReferences)  // Make sure to include RequestReferences
-        .Where(tr => tr.RequestorUserId == userId)
-        .ToList()
-        .Select(tr => MappingService.MapToDTO(tr)); // Use the MappingService to convert models to DTOs
-    return requests;
-}
+        {
+            var requests = _context.TranslationRequests
+                .Include(tr => tr.Media)
+                .Include(tr => tr.RequestReferences)  // Make sure to include RequestReferences
+                .Where(tr => tr.RequestorUserId == userId)
+                .ToList()
+                .Select(tr => MappingService.MapToDTO(tr)); // Use the MappingService to convert models to DTOs
+            return requests;
+        }
 
 
 

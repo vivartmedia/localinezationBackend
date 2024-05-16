@@ -177,6 +177,24 @@ namespace Backend_localinezationBackend.Controllers
             else
                 return NotFound("No translations found for this translator user ID.");
         }
+        [HttpGet]
+        [Route("GetTranslationsByMediaId/{mediaId}")]
+        public ActionResult<IEnumerable<TranslationDTO>> GetTranslationsByMediaId(int mediaId)
+        {
+            try
+            {
+                var translations = _data.GetTranslationsByMediaId(mediaId);
+                if (translations.Any())
+                    return Ok(translations);
+                else
+                    return NotFound("No translations found for this media ID.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
 
 
