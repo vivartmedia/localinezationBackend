@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
+// using System.Collections.Generic;
+// using System.Threading.Tasks;
 using localinezationBackend.Models;
 using localinezationBackend.Models.DTO;
 using localinezationBackend.Services.Context;
@@ -12,13 +12,11 @@ namespace Backend_localinezationBackend.Services
     {
         private readonly DataContext _context;
         private readonly ILogger<MediaService> _logger;
-
         public MediaService(DataContext context, ILogger<MediaService> logger)
         {
             _context = context;
             _logger = logger;
         }
-
 
         public bool AddMediaItem(MediaItemModel newMediaItem)
         {
@@ -58,7 +56,6 @@ namespace Backend_localinezationBackend.Services
             return _context.MediaInfo.SingleOrDefault(item => item.ID == id);
         }
 
-
         public bool UpdateMediaItem(MediaItemModel mediaUpdate)
         {
             _context.Update(mediaUpdate);
@@ -76,7 +73,6 @@ namespace Backend_localinezationBackend.Services
             }
             return false;
         }
-
 
         public bool AddTranslationRequest(TranslationRequestModel request)
         {
@@ -104,7 +100,6 @@ namespace Backend_localinezationBackend.Services
             }
         }
 
-
         public IEnumerable<MediaItemModel> GetUserMediaWithTranslations(int userId)
         {
             return _context.MediaInfo
@@ -113,8 +108,6 @@ namespace Backend_localinezationBackend.Services
                            .Where(m => m.UserID == userId)
                            .ToList();
         }
-
-
 
         public IEnumerable<MediaItemModel> GetTranslatedMediaByUser(int translatorUserId)
         {
@@ -129,48 +122,6 @@ namespace Backend_localinezationBackend.Services
                            .ToList();
         }
 
-
-        // public IEnumerable<TranslationRequestModel> GetTranslationRequestsByUserId(int userId)
-        // {
-        //     return _context.TranslationRequests
-        //                    .Include(tr => tr.Media)
-        //                    .Where(tr => tr.RequestorUserId == userId)
-        //                    .ToList();
-        // }
-
-
-
-        // public IEnumerable<TranslationModel> GetTranslationsByRequestId(int requestId)
-        // {
-        //     return _context.Translations
-        //                    .Where(t => t.TranslationRequestId == requestId)
-        //                    .ToList();
-        // }
-
-        //         public IEnumerable<TranslationDTO> GetTranslationsByRequestId(int requestId)
-        // {
-        //     _logger.LogInformation("Fetching translations for request ID: {RequestId}", requestId);
-        //     var translations = _context.Translations
-        //                                .Include(t => t.TranslationRequest)
-        //                                .ThenInclude(tr => tr.Media)
-        //                                .Where(t => t.TranslationRequestId == requestId)
-        //                                .ToList();
-
-        //     var translationDtos = translations.Select(t => new TranslationDTO
-        //     {
-        //         Id = t.Id,
-        //         // TranslationRequestId = t.TranslationRequestId,
-        //         // TranslatorUserId = t.TranslatorUserId,
-        //         // TranslatedText = t.TranslatedText,
-        //         // IsApproved = t.IsApproved,
-        //         // Language = t.Language,
-        //         // IsGuest = t.IsGuest,
-        //         // Include any additional necessary properties
-        //     }).ToList();
-
-        //     _logger.LogInformation("Fetched {Count} translations", translationDtos.Count);
-        //     return translationDtos;
-        // }
         public IEnumerable<TranslationDTO> GetTranslationsByRequestId(int requestId)
         {
             _logger.LogInformation("Fetching translations for request ID: {RequestId}", requestId);
@@ -234,42 +185,6 @@ namespace Backend_localinezationBackend.Services
             return translations;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // public IEnumerable<TranslationModel> GetTranslationsByTranslatorUserId(int translatorUserId)
-        // {
-        //     // This approach uses the null-forgiving operator to suppress nullable warnings after thorough checks.
-        //     return _context.Translations
-        //                    .Include(t => t.TranslationRequest!)
-        //                        .ThenInclude(tr => tr.Media!)
-        //                    .Where(t => t.TranslatorUserId == translatorUserId &&
-        //                                t.TranslationRequest != null &&
-        //                                t.TranslationRequest.Media != null)
-        //                    .Select(t => t) // Assuming you are returning the TranslationModel directly
-        //                    .ToList();
-        // }
-
-
-
-
-        //     public IEnumerable<TranslationRequestModel> GetTranslationRequestsByMediaId(int mediaId)
-        // {
-        //     return _context.TranslationRequests
-        //                    .Include(tr => tr.Media)
-        //                    .Where(tr => tr.MediaId == mediaId)
-        //                    .ToList();
-        // }
-
         public IEnumerable<TranslationRequestDTO> GetTranslationRequestsByMediaId(int mediaId)
         {
             var requests = _context.TranslationRequests
@@ -290,12 +205,5 @@ namespace Backend_localinezationBackend.Services
                 .Select(tr => MappingService.MapToDTO(tr)); // Use the MappingService to convert models to DTOs
             return requests;
         }
-
-
-
-
-
-
     }
-
 }

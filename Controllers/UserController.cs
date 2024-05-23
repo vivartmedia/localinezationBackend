@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
 
 using localinezationBackend.Models;
 using localinezationBackend.Models.DTO;
@@ -73,8 +73,6 @@ namespace localinezationBackend.Controllers
             return _data.UpdateUserCredentials(credentials.Id, credentials.Username, credentials.Password);
         }
 
-
-
         // //DeleteUser endpoint
         [HttpDelete]
         [Route("DeleteUser/{userToDelete}")]
@@ -83,12 +81,6 @@ namespace localinezationBackend.Controllers
             return _data.DeleteUser(userToDelete);
         }
 
-        // [HttpGet]
-        // [Route("GetUserByUsername/{username}")]
-        // public UserIdDTO GetUserByUsername(string username)
-        // {
-        //     return _data.GetUserIdDTOByUsername(username);
-        // }
 
         [HttpGet]
         [Route("GetUserByUsername/{username}")]
@@ -119,10 +111,6 @@ namespace localinezationBackend.Controllers
                 return NotFound($"User with ID {id} not found.");
             }
         }
-
-
-
-
 
     }
 }

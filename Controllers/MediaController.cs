@@ -137,7 +137,6 @@ namespace Backend_localinezationBackend.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("GetTranslationRequestsByMediaId/{mediaId}")]
         public ActionResult<IEnumerable<TranslationRequestDTO>> GetTranslationRequestsByMediaId(int mediaId)
@@ -152,7 +151,6 @@ namespace Backend_localinezationBackend.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
 
         [HttpGet]
@@ -166,7 +164,6 @@ namespace Backend_localinezationBackend.Controllers
                 return NotFound("No translations found for this request ID.");
         }
 
-
         [HttpGet]
         [Route("GetTranslationsByTranslatorUserId/{translatorUserId}")]
         public ActionResult<IEnumerable<TranslationDTO>> GetTranslationsByTranslatorUserId(int translatorUserId)
@@ -177,6 +174,7 @@ namespace Backend_localinezationBackend.Controllers
             else
                 return NotFound("No translations found for this translator user ID.");
         }
+        
         [HttpGet]
         [Route("GetTranslationsByMediaId/{mediaId}")]
         public ActionResult<IEnumerable<TranslationDTO>> GetTranslationsByMediaId(int mediaId)
@@ -194,11 +192,6 @@ namespace Backend_localinezationBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
-
-
-
-
 
     }
 }

@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
+// using System;
+// using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 
 using localinezationBackend.Models;
 using localinezationBackend.Models.DTO;
@@ -27,40 +27,11 @@ namespace localinezationBackend.Services
         public bool DoesUserExist(string Username)
         {
             //check if username exist 
-            //is 1 item matches then return the item
-            //if no item matches, then return null
+            //is 1 user matches then return the item
+            //if no user matches, then return null
 
             return _context.UserInfo.SingleOrDefault(user => user.Username == Username) != null;
         }
-
-        // public bool AddUser(CreateAccountDTO UserToAdd)
-        // {
-        //     bool result = false;
-
-        //     // Check if user doesn't exist, then add user based on model
-        //     if (!DoesUserExist(UserToAdd.Username))
-        //     {
-        //         UserModel newUser = new UserModel
-        //         {
-        //             ID = UserToAdd.ID,
-        //             Username = UserToAdd.Username,
-        //             // Email = UserToAdd.Email, // Set email here as request by zach
-        //             // Salt and Hash are set after hashing the password
-        //         };
-
-        //         var hashPassword = HashPassword(UserToAdd.Password);
-        //         newUser.Salt = hashPassword.Salt;
-        //         newUser.Hash = hashPassword.Hash;
-
-        //         // Add new user to the database
-        //         _context.Add(newUser);
-
-        //         // Save into database, number of entries written into database indicates success
-        //         result = _context.SaveChanges() != 0;
-        //     }
-
-        //     return result;
-        // }
 
         public ActionResult AddUser(CreateAccountDTO UserToAdd)
         {
@@ -188,7 +159,7 @@ namespace localinezationBackend.Services
                     Result = Ok(new { Token = tokenString });
                 }
 
-                //Token: 
+                //Token explained: 
                 // asdasdlejjwfoeiwj. = header
                 // oisodcijosdijcodsj. Payload: contains claims such as expiration time
                 // ;slakf/sdlofk/slfk;. = signature encrpts and comine header and payload using secret key
@@ -212,7 +183,7 @@ namespace localinezationBackend.Services
         public bool UpdateUsername(int id, string username)
         {
             //sending over just the id and username
-            //we have to get the object to be updated
+            //to get the object to be updated
 
             UserModel foundUser = GetUserById(id);
 
@@ -230,10 +201,7 @@ namespace localinezationBackend.Services
             return result;
         }
 
-        // private UserModel GetUserById(int id)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        
 
         public bool UpdateUserCredentials(int id, string username, string password)
         {
@@ -273,7 +241,7 @@ namespace localinezationBackend.Services
 
         public bool DeleteUser(string userToDelete)
         {
-            //we are only sending over the username
+            //sending over the username
             //if username found found, delete user
             UserModel foundUser = GetUserByUsername(userToDelete);
 
@@ -289,30 +257,13 @@ namespace localinezationBackend.Services
             return result;
         }
 
-        // public UserIdDTO GetUserIdDTOByUsername(string username)
-        // {
-
-        //     UserIdDTO UserInfo = new UserIdDTO();
-
-        //     //query through database to find user
-        //     UserModel foundUser = _context.UserInfo.SingleOrDefault(user => user.Username == username);
-
-        //     UserInfo.UserId = foundUser.ID;
-
-        //     UserInfo.PublisherName = foundUser.Username;
-
-        //     return UserInfo;
-
-
-        // }
-
         public UserIdDTO GetUserIdDTOByUsername(string username)
         {
             UserModel foundUser = _context.UserInfo.SingleOrDefault(user => user.Username == username);
 
             if (foundUser == null)
             {
-                throw new Exception("User not found"); // Ideally, you would handle this more gracefully
+                throw new Exception("User not found");
             }
 
             UserIdDTO userInfo = new UserIdDTO
@@ -335,7 +286,7 @@ namespace localinezationBackend.Services
                     PublisherName = user.Username
                 };
             }
-            return null;  // Return null or throw an exception as per your error handling strategy
+            return null;  // Return null or throw an exception as per error handling strategy
         }
 
 
