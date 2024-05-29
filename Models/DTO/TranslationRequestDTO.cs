@@ -4,7 +4,7 @@ namespace localinezationBackend.Models.DTO
     // DTO class for carrying translation request data
     public class TranslationRequestDTO
     {
-        public int Id { get; set; } // Unique identifier for the translation request, typically a primary key in the database
+        public int Id { get; set; } // Unique identifier for the translation request, a primary key in the database
         
         public int RequestorUserId { get; set; } // User ID of the person who made the translation request
         
