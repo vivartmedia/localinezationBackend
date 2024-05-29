@@ -20,8 +20,6 @@ namespace localinezationBackend.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverArt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OriginalLanguage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Tags = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Categories = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Platform = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPublished = table.Column<bool>(type: "bit", nullable: true),
@@ -39,7 +37,6 @@ namespace localinezationBackend.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -99,9 +96,9 @@ namespace localinezationBackend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TranslationRequestId = table.Column<int>(type: "int", nullable: false),
-                    TranslatorUserId = table.Column<int>(type: "nvarchar(max)", nullable: true),
+                    TranslatorUserId = table.Column<int>(type: "int", nullable: false),
                     TranslatedText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsApproved = table.Column<int>(type: "nvarchar(max)", nullable: true),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsGuest = table.Column<bool>(type: "bit", nullable: false)
                 },

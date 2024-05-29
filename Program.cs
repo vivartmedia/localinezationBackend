@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container. Services are typically scoped to the request lifecycle meaning they are created per each HTTP request.
 // builder.Services.AddScoped<BlogService>(); // Example service that's currently commented out
 builder.Services.AddScoped<UserService>(); // Registers UserService for dependency injection
-builder.Services.AddScoped<PasswordService>(); // Registers PasswordService for dependency injection
+// builder.Services.AddScoped<PasswordService>(); // Registers PasswordService for dependency injection
 builder.Services.AddScoped<MediaService>(); // Registers MediaService for dependency injection
 
 // Retrieve the connection string from the configuration file, typically appsettings.json or environment-specific configuration

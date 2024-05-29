@@ -12,8 +12,8 @@ using localinezationBackend.Services.Context;
 namespace localinezationBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240512042347_UpdateRequestFieldsToNullable")]
-    partial class UpdateRequestFieldsToNullable
+    [Migration("20240529000308_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,6 @@ namespace localinezationBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Categories")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CoverArt")
                         .HasColumnType("nvarchar(max)");
 
@@ -49,9 +46,6 @@ namespace localinezationBackend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Platform")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tags")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -101,7 +95,7 @@ namespace localinezationBackend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("IsApproved")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsGuest")
                         .HasColumnType("bit");
@@ -116,7 +110,7 @@ namespace localinezationBackend.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("TranslatorUserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -162,9 +156,6 @@ namespace localinezationBackend.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
